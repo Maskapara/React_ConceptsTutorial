@@ -3,31 +3,24 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import * as serviceWorker from './serviceWorker';
 
-class Toggle extends React.Component{
-  constructor(props){
-    super(props);
-    this.state = {isToggleOn: true};
-
-    this.handleClick = this.handleClick.bind(this);
+class LoggingButton extends React.Component {
+  // This syntax ensures `this` is bound within handleClick.
+  // Warning: this is *experimental* syntax.
+  handleClick = () => {
+    console.log('this is:', this);
   }
 
-  handleClick(){
-    this.setState(prevState => ({
-      isToggleOn: !prevState.isToggleOn
-    }));
-  }
-
-  render(){
-    return(
+  render() {
+    return (
       <button onClick={this.handleClick}>
-      {this.state.isToggleOn ? 'ON' : "OFF"}
+        Click me
       </button>
     );
   }
 }
 
 ReactDOM.render(
-  <Toggle />,
+  <LoggingButton />,
   document.getElementById('root')
 );
 
